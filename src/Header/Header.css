@@ -1,0 +1,10 @@
+header {
+  border: 1px solid hotpink;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.head {
+  width: 10rem;
+}
