@@ -7,8 +7,11 @@ main {
 }
 
 .game {
+  align-items: center;
   border: 1px solid green;
+  display: flex;
   font-size: small;
   height: 20vh;
+  justify-content: center;
   width: 20vh;
 }

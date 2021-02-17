@@ -1,38 +1,23 @@
 import React from 'react';
 import './StatsContainer.css';
-import { getGamesData, getGameData }from '../util';
+
 
 class StatsContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      // stores team ids and short names and such
-      gamesData: null,
-      // 
-    }
-  }
-
-  componentDidMount() {
-    getGamesData()
-    .then(response => {
-      console.log(response)
-      this.setState({gamesData: response})
-    })
-    .catch(err => console.log(err))
-
-    // getGameData()
-    // .then(response => {
-    //   this.setState({gameData: response})
-    // })
-    // .catch(err => console.log(err))
-  }
 
   makeGames = () => {
-    if (this.state.gamesData.leagues) {
-      console.log(this.state.gamesData)
-      const games = this.state.gamesData.events.map(game => {
+    if (this.props.gamesData.leagues) {
+      const games = this.props.gamesData.events.map(game => {
         return (
-          <article className="game">{game.name}</article>
+          <article 
+            key={game.id}
+            id={game.id} 
+            homeid={game.competitions[0].competitors[0].id}
+            awayid={game.competitions[0].competitors[1].id}
+            className="game"
+            onClick={(event) => this.props.handleClick(event)}
+          >
+            {game.name}
+          </article>
         )
       })
       return games 
@@ -45,7 +30,7 @@ class StatsContainer extends React.Component {
   }
 
   render() {
-    if (this.state.gamesData) {
+    if (this.props.gamesData) {
       return (
         <main className="main">
         {this.makeGames()}
