@@ -33,7 +33,7 @@ class Modal extends React.Component {
       return (
         <section className="modal">
           <article className="game-nav">
-            <button>
+            <button onClick={() => this.props.goBack()}>
               BACK TO HOME
             </button>
           </article>
@@ -53,7 +53,7 @@ class Modal extends React.Component {
       return (
         <section className="modal">
           <article className="game-nav">
-            <button>
+            <button onClick={() => this.props.goBack()}>
               BACK TO HOME
             </button>
           </article>

@@ -36,6 +36,10 @@ class App extends React.Component {
     })
   }
 
+  goBack = () => {
+    this.setState({modalOpen: false})
+  }
+
   findHomeID = (id) => {
     
   }
@@ -46,7 +50,7 @@ class App extends React.Component {
         <Header />
         {this.state.modalOpen
         ? 
-        <Modal homeID={this.state.homeID} awayID={this.state.awayID} /> 
+        <Modal homeID={this.state.homeID} awayID={this.state.awayID} goBack={this.goBack} /> 
         : 
         <StatsContainer gamesData={this.state.gamesData} handleClick={this.handleClick} />}
       </div>
