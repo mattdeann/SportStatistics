@@ -7,9 +7,7 @@ class StatsContainer extends React.Component {
     super();
     this.state = {
       // stores team ids and short names and such
-      teamsData: null,
       gamesData: null,
-      gameData: null
       // 
     }
   }
@@ -17,6 +15,7 @@ class StatsContainer extends React.Component {
   componentDidMount() {
     getGamesData()
     .then(response => {
+      console.log(response)
       this.setState({gamesData: response})
     })
     .catch(err => console.log(err))
@@ -29,25 +28,20 @@ class StatsContainer extends React.Component {
   }
 
   makeGames = () => {
-    return this.state.gamesData.data.map(game => {
+    if (this.state.gamesData.leagues) {
+      console.log(this.state.gamesData)
+      const games = this.state.gamesData.events.map(game => {
+        return (
+          <article className="game">{game.name}</article>
+        )
+      })
+      return games 
+    }
+    else {
       return (
-        <article className="game">
-        <section classname="home">
-          <p>{game.home_team.id}</p>
-          <p>{game.home_team.abbreviation}</p>
-          <p>{game.home_team.abbreviation}</p>
-          <p>{game.home_team.abbreviation}</p>
-        </section>
-        <section classname="visitor">
-          <p>{game.visitor_team.id}</p>
-          <p>{game.visitor_team.abbreviation}</p>
-          <p>{game.visitor_team.abbreviation}</p>
-          <p>{game.visitor_team.abbreviation}</p>
-        </section>
-          
-        </article>
+        <p></p>
       )
-    })
+    }
   }
 
   render() {
